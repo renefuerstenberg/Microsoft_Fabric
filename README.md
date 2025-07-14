@@ -1,4 +1,4 @@
-# Microsoft_Fabric
+# Microsoft Fabric
 
 Scripts:
 

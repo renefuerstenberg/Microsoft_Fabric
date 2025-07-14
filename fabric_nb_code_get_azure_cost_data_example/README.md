@@ -1,10 +1,8 @@
+IMPORTANT:
 
+The following prerequisites must also be considered:
 
-WICHTIG:
-
-Folgende Voraussetzungen sind noch zu berücksichtigen:
-
-1. Eine APP Registration muss erstellt werden mit einem Secret.
-2. In meinem Beispiel nutze ich auch einen Azure Key Vault um die entsprechenden IDs abzurufen.
-3. Desweiteren nutze ich Parameter die auch befüllt werden müssen.
-4. Die APP muss CostManagement Reader Rechte besitzen auf die Subscription um die Kostendaten abrufen zu können.
+1. An APP registration must be created with a secret.
+2. In my example, I also use an Azure Key Vault to retrieve the corresponding IDs.
+3. Additionally, I use parameters that also need to be filled in.
+4. The APP must have CostManagement Reader rights on the subscription to be able to retrieve the cost data.

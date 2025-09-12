@@ -23,13 +23,13 @@ body = {
 
 url = f"https://management.azure.com/subscriptions/{microsoft_subscription_id}/providers/Microsoft.CostManagement/generateCostDetailsReport?api-version=2022-05-01"
 
-# Schritt 1: Erstelle den Bericht
+# Schritt 1: Create a Report
 
 response = requests.post(url, headers=headers, json=body)
 
 print(response)
 
-# Schritt 2: Bericht lesen und speicher im Lakehouse
+# Schritt 2: Read Report and save to Lakehouse
 
 check_response = requests.get(response.headers["location"], headers=headers)
 
@@ -40,17 +40,17 @@ if check_response.status_code == 200:
             if 'manifest' in response_dict and 'blobs' in response_dict['manifest'] and len(response_dict['manifest']['blobs']) > 0:
                 blob_link = response_dict['manifest']['blobs'][0]['blobLink']
 
-                # CSV Lesen
+                # Read CSV
                 csv_df = pd.read_csv(blob_link, low_memory=False)
 
                 spark_df = spark.read.option("header","true").csv(blob_link)
 
                  
-                # Pfad festlegen
+                # Set Path
                 filename = "AzureConsumption.csv"
                 path = f"{LakehousePathActualCost}/{filename}"
 
-                # Datei in das Lakehouse schreiben/ Pfad erstellen
+                # Write File into Lakehouse and save to Path
                 os.makedirs(os.path.dirname(path), exist_ok=True)
                 csv_df.to_csv(path, index=False)
                 print(f"Datei gespeichert: {path}")
